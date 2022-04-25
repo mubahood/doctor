@@ -19,7 +19,7 @@ class ApiProductsController
     public function upload_temp_file(Request $request)
     {
 
-        
+
 
         if (
             isset($_FILES['file']) &&
@@ -39,19 +39,19 @@ class ApiProductsController
 
             $data = Utils::upload_images($raw_images);
             $user_id = $_GET['user_id'];
-            if(
+            if (
                 isset($data[0]) &&
                 isset($data[0]['src']) &&
                 isset($data[0]['thumbnail']) &&
-                isset($data[0]['user_id']) 
-            ){
+                isset($data[0]['user_id'])
+            ) {
                 $img = $data[0];
                 $new_img = new Image();
                 $new_img->src = $img['src'];
                 $new_img->user_id = $user_id;
-                $new_img->thumbnail = $img['thumbnail']; 
+                $new_img->thumbnail = $img['thumbnail'];
                 $new_img->name = 'temp';
-                $new_img->save(); 
+                $new_img->save();
             }
             die("1");
         }
@@ -306,18 +306,29 @@ class ApiProductsController
     public function index(Request $request)
     {
 
-        if(
+        if (
             (!isset($request->lati)) &&
             (!isset($request->longi)) &&
-            (!isset($request->cat_id)) 
-        ){
+            (!isset($request->cat_id))
+        ) {
             return [];
         }
         $loc['lati'] = $request->lati;
         $loc['long'] = $request->long;
         $loc['cat_id'] = $request->cat_id;
 
-        $pros = Product::get_nearest_products($loc);
+        $_pros = Product::get_nearest_products($loc);
+
+        $i = 0;
+        $pros = [];
+        foreach ($_pros as $key => $p) {
+            $i++;
+            if ($i > 3) {
+                break;
+            }
+            $pros[] = $p;
+        }
+
 
         return $pros;
         $per_page = (int) ($request->per_page ? $request->per_page : 200);
