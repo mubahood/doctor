@@ -1,0 +1,4 @@
+php artisan make:component Alert --inline
+php artisan make:component Supplier
+
+php artisan admin:make PostCategoryController --model=App\\Models\\PostCategory

@@ -1,0 +1,19 @@
+ALTER TABLE `chats` ADD `audio` TEXT NULL DEFAULT NULL AFTER `seen`;
+ALTER TABLE `chats` ADD `image` TEXT NULL DEFAULT NULL AFTER `seen`;
+ALTER TABLE `chats` ADD `file` TEXT NULL DEFAULT NULL AFTER `seen`;
+ALTER TABLE `chats` ADD `gps` TEXT NULL DEFAULT NULL AFTER `seen`;
+ALTER TABLE `chats` ADD `contact` TEXT NULL DEFAULT NULL AFTER `seen`;
+ALTER TABLE `chats` ADD `sender_pic` TEXT NULL DEFAULT NULL AFTER `seen`;
+ALTER TABLE `chats` ADD `receiver_pic` TEXT NULL DEFAULT NULL AFTER `seen`;
+ALTER TABLE `chats` ADD `type` TEXT NULL DEFAULT NULL AFTER `seen`;
+
+ALTER TABLE `chats` ADD `receiver_name` TEXT NULL DEFAULT NULL;
+ALTER TABLE `chats` ADD `sender_name` TEXT NULL DEFAULT NULL;
+
+
+ALTER TABLE `chats` ADD `product_name` TEXT NULL DEFAULT NULL;
+ALTER TABLE `chats` ADD `product_pic` TEXT NULL DEFAULT NULL;
+ALTER TABLE `chats` ADD `unread_count` TEXT NULL DEFAULT NULL;
+
+    	
+    

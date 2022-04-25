@@ -1,0 +1,17 @@
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.form-control,
+textarea {
+    background-color: #eef3f7;
+    border-color: #eef3f7;
+    color: #5e6278;
+    transition: color .2s ease, background-color .2s ease
+}
