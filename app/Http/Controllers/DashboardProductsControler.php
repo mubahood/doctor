@@ -2,7 +2,6 @@
 //most latest change
 namespace App\Http\Controllers;
 
-use App\DataTables\ProductsDataTable;
 use App\Models\Product;
 use App\Models\Profile;
 use App\Models\Utils;
@@ -19,9 +18,9 @@ use Illuminate\Support\Str;
 
 class DashboardProductsControler extends Controller
 {
-    public function index(ProductsDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('metro.dashboard.products');
+        return view('metro.dashboard.products');
     }
 
     public function create()
