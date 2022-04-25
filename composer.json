@@ -19,9 +19,7 @@
         "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.2",
         "spatie/laravel-image-optimizer": "^1.6",
-        "stefangabos/zebra_image": "dev-master",
-        "yajra/laravel-datatables-buttons": "^4.10",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "stefangabos/zebra_image": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
