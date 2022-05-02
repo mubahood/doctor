@@ -37,6 +37,60 @@ class ApiAppointementsController extends Controller
         return $items;
     }
 
+    /*
+    {: canceled, : not paid, : mobile money, : 200, : 2022-05-17 08:00:00.000}
+    */
+    public function status_update(Request $r){
+        if (
+            (!isset($r->status)) ||
+            (!isset($r->id)) ||
+            (!isset($r->payment_status)) ||
+            (!isset($r->payment_method)) ||
+            (!isset($r->price)) ||
+            (!isset($r->appointment_time))
+        ) {
+            return Utils::response([
+                'status' => '0',
+                'message' => 'No enough data.',
+            ]);
+        }
+
+        $item = Appointment::find(((int)($r->id)));
+        if($item == null){
+            return Utils::response([
+                'status' => '0',
+                'message' => 'Appointment not found.',
+            ]);
+        }
+        if($r->status!=null){
+            $item->status = $r->status;
+        }
+        if($r->payment_status!=null){
+            $item->payment_status = $r->payment_status;
+        }
+        if($r->payment_method!=null){
+            $item->payment_method = $r->payment_method;
+        }
+        if($r->appointment_time!=null){
+            $item->appointment_time = $r->appointment_time;
+        }
+        if($r->price!=null){
+            $item->price = (int)($r->price);
+        }
+
+        if($item->save()){
+            return Utils::response([
+                'status' => '1',
+                'message' => 'Appointment updated.',
+            ]);
+        }else{
+            return Utils::response([
+                'status' => '0',
+                'message' => 'Failed to update appointment.',
+            ]);
+        }
+
+    }
     public function store(Request $r)
     {
 
