@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route; //new staff
 
 
 Route::resource('appointments', ApiAppointementsController::class);
+Route::post('appointments/status-update', [ApiAppointementsController::class, 'status_update']);
 
 Route::post('products', [ApiProductsController::class, 'create']);
 Route::post('upload-temp-file', [ApiProductsController::class, 'upload_temp_file']);
