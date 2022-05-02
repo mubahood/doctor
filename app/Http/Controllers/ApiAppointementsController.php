@@ -42,12 +42,8 @@ class ApiAppointementsController extends Controller
     */
     public function status_update(Request $r){
         if (
-            (!isset($r->status)) ||
-            (!isset($r->id)) ||
-            (!isset($r->payment_status)) ||
-            (!isset($r->payment_method)) ||
-            (!isset($r->price)) ||
-            (!isset($r->appointment_time))
+            (!isset($r->id)) || 
+            (!isset($r->price)) 
         ) {
             return Utils::response([
                 'status' => '0',
