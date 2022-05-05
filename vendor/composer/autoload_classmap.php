@@ -7,9 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
-    'App\\DataTables\\AppointmentsDataTable' => $baseDir . '/app/DataTables/AppointmentsDataTable.php',
-    'App\\DataTables\\ProductsDataTable' => $baseDir . '/app/DataTables/ProductsDataTable.php',
-    'App\\DataTables\\UsersDataTable' => $baseDir . '/app/DataTables/UsersDataTable.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\ApiAppointementsController' => $baseDir . '/app/Http/Controllers/ApiAppointementsController.php',
     'App\\Http\\Controllers\\ApiChatsController' => $baseDir . '/app/Http/Controllers/ApiChatsController.php',

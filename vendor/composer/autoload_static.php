@@ -585,9 +585,6 @@ class ComposerStaticInit6610ade2b3586dfbab7a590c0b52e757
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
-        'App\\DataTables\\AppointmentsDataTable' => __DIR__ . '/../..' . '/app/DataTables/AppointmentsDataTable.php',
-        'App\\DataTables\\ProductsDataTable' => __DIR__ . '/../..' . '/app/DataTables/ProductsDataTable.php',
-        'App\\DataTables\\UsersDataTable' => __DIR__ . '/../..' . '/app/DataTables/UsersDataTable.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\ApiAppointementsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiAppointementsController.php',
         'App\\Http\\Controllers\\ApiChatsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiChatsController.php',
