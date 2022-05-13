@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route; //new staff
 
 
 
+Route::get('hospitals', [ApiProductsController::class, 'hospitals']);
+Route::get('services', [ApiProductsController::class, 'services']);
 Route::resource('appointments', ApiAppointementsController::class);
 Route::post('appointments/status-update', [ApiAppointementsController::class, 'status_update']);
 

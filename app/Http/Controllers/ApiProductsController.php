@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Hospital;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\PostCategory;
@@ -16,6 +17,13 @@ use Illuminate\Http\Request;
 
 class ApiProductsController
 {
+    public function services(Request $request){
+        return Product::all();
+    }
+
+    public function hospitals(Request $request){
+        return Hospital::all();
+    }
     public function upload_temp_file(Request $request)
     {
 
