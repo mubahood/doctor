@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Hospital;
 use App\Models\Image;
+use App\Models\Location;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\PostComment;
@@ -388,7 +389,8 @@ class ApiProductsController
 
     public function locations(Request $request)
     {
-        return Utils::get_locations();
+        //return Utils::get_locations();
+        return Location::all();
     }
 
     public function categories(Request $request)
