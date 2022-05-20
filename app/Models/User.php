@@ -12,111 +12,31 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function active()
-    {
-        if (!isset($this->profile)) {
-            return false;
-        }
-        if ($this->profile == null) {
-            return false;
-        }
-        if (!isset($this->profile->status)) {
-            return false;
-        }
-        if ($this->profile->status == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public function account_status()
-    {
-        if (!$this->profile) {
-            return "not_active";
-        }
-        if (!$this->profile->status) {
-            return "not_active";
-        }
-        if ($this->profile->status == "active") {
-            return "active";
-        }
-        if (strlen($this->profile->cover_photo) > 4) {
-            return "pending";
-        }
-        return "not_active";
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        self::creating(function ($model) {
-        });
-
-        self::created(function ($model) {
-            $pro['user_id'] = $model->id;
-            //Profile::create($pro);
-        });
-
-        self::updating(function ($model) {
-            // ... code here
-        });
-
-        self::updated(function ($model) {
-            // ... code here
-        });
-
-        self::deleting(function ($model) {
-            // ... code here
-        });
-
-        self::deleted(function ($model) {
-            // ... code here
-        });
-    }
-
-
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'username',
-        'phone_number',
-        'latitude',
-        'longitude',
-        'sub_county',
-        'user_type',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
         'remember_token',
     ];
- 
-    public function getAvatarAttribute($avatar)
-    {
-       return url('storage/'.$avatar);
-    }
-
-
-    protected $appends = [
-        'avatar', 
-    ];
 
     /**
      * The attributes that should be cast.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
