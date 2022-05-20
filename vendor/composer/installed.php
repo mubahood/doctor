@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'c2008718dbdf29f3a073f1f99a2086ee232ba237',
+        'reference' => NULL,
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -131,12 +131,12 @@
             'dev_requirement' => false,
         ),
         'encore/laravel-admin' => array(
-            'pretty_version' => '1.8.18',
+            'pretty_version' => 'v1.8.18',
             'version' => '1.8.18.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../encore/laravel-admin',
             'aliases' => array(),
-            'reference' => '6727f64754f69599d44f1362a2963588c07e6f8c',
+            'reference' => '6c59792713d7f93fcd979432b5fc14b636f2de2c',
             'dev_requirement' => false,
         ),
         'facade/flare-client-php' => array(
@@ -440,12 +440,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'c2008718dbdf29f3a073f1f99a2086ee232ba237',
+            'reference' => NULL,
             'dev_requirement' => false,
         ),
         'laravel/legacy-factories' => array(

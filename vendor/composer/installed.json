@@ -942,17 +942,17 @@
         },
         {
             "name": "encore/laravel-admin",
-            "version": "1.8.18",
+            "version": "v1.8.18",
             "version_normalized": "1.8.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z-song/laravel-admin.git",
-                "reference": "6727f64754f69599d44f1362a2963588c07e6f8c"
+                "reference": "6c59792713d7f93fcd979432b5fc14b636f2de2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z-song/laravel-admin/zipball/6727f64754f69599d44f1362a2963588c07e6f8c",
-                "reference": "6727f64754f69599d44f1362a2963588c07e6f8c",
+                "url": "https://api.github.com/repos/z-song/laravel-admin/zipball/6c59792713d7f93fcd979432b5fc14b636f2de2c",
+                "reference": "6c59792713d7f93fcd979432b5fc14b636f2de2c",
                 "shasum": ""
             },
             "require": {
@@ -972,7 +972,7 @@
                 "intervention/image": "Required to handling and manipulation upload images (~2.3).",
                 "spatie/eloquent-sortable": "Required to built orderable gird."
             },
-            "time": "2022-03-16T06:56:41+00:00",
+            "time": "2022-04-10T05:32:46+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1013,7 +1013,7 @@
             ],
             "support": {
                 "issues": "https://github.com/z-song/laravel-admin/issues",
-                "source": "https://github.com/z-song/laravel-admin/tree/1.8.18"
+                "source": "https://github.com/z-song/laravel-admin/tree/v1.8.18"
             },
             "install-path": "../encore/laravel-admin"
         },
