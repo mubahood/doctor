@@ -16,6 +16,16 @@ use function PHPUnit\Framework\fileExists;
 class Product extends Model
 {
     use HasFactory;
+    
+    public function doctor()
+    {
+        return $this->belongsTo(Administrator::class,'doctor_id');
+    }
+    
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class);
+    }
 
     public static function get_nearest_products($loc){
          
@@ -63,7 +73,7 @@ class Product extends Model
     public function getQuantityAttribute($value)
     {
         return (int)($value);
-    }
+    } 
 
 
     public function getPriceAttribute($value)

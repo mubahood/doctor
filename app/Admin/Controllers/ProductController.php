@@ -2,7 +2,9 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Hospital;
 use App\Models\Product;
+use Encore\Admin\Auth\Database\Administrator;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -26,31 +28,27 @@ class ProductController extends AdminController
     {
         $grid = new Grid(new Product());
 
-        $grid->column('id', __('Id'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
-        $grid->column('name', __('Name'));
-        $grid->column('category_id', __('Category id'));
-        $grid->column('user_id', __('User id'));
-        $grid->column('country_id', __('Country id'));
-        $grid->column('city_id', __('City id'));
-        $grid->column('price', __('Price'));
-        $grid->column('slug', __('Slug'));
-        $grid->column('status', __('Status'));
-        $grid->column('description', __('Description'));
-        $grid->column('quantity', __('Quantity'));
-        $grid->column('images', __('Images'));
-        $grid->column('thumbnail', __('Thumbnail'));
-        $grid->column('attributes', __('Attributes'));
-        $grid->column('sub_category_id', __('Sub category id'));
-        $grid->column('fixed_price', __('Fixed price'));
-        $grid->column('nature_of_offer', __('Nature of offer'));
-        $grid->column('hospital_id', __('Hospital id'));
-        $grid->column('doctor_id', __('Doctor id'));
-        $grid->column('location_id', __('Location id'));
-        $grid->column('latitude', __('Latitude'));
-        $grid->column('longitude', __('Longitude'));
 
+        $grid->filter(function ($filter) {
+
+         
+            $filter->equal('hospital_id', "Filter by Hospital")->select(Hospital::all()->pluck('name', 'id'));
+            
+        });
+
+
+
+
+        $grid->column('id', __('Id'))->sortable();
+        $grid->column('name', __('Name'));
+        $grid->column('hospital_id', __('Hospital'))->display(function ($m){
+            return $this->hospital->name;
+        });
+        $grid->column('doctor_id', __('Doctor'))->display(function ($m){
+            return $this->doctor->name;
+        });
+
+        $grid->column('price', __('Price'));
         return $grid;
     }
 
@@ -101,27 +99,34 @@ class ProductController extends AdminController
     {
         $form = new Form(new Product());
 
-        $form->text('name', __('Name'));
-        $form->number('category_id', __('Category id'));
-        $form->number('user_id', __('User id'));
-        $form->number('country_id', __('Country id'))->default(1);
-        $form->number('city_id', __('City id'));
-        $form->text('price', __('Price'));
-        $form->text('slug', __('Slug'));
-        $form->text('status', __('Status'));
+        $form->text('name', __('Service name'))->required();
+
+        $hops = Hospital::get_items();
+        $form->select('hospital_id', 'Hospital')->options($hops)->required();
+
+        $admins = Administrator::get_items();
+        $form->select('doctor_id', 'Doctor')->options($admins)->required();
+  
+        $form->text('price', __('Price'))->attribute(['type'=>'number'])->required();
+
+        $form->hidden('category_id', __('Category id'))->default(1);
+        $form->hidden('user_id', __('User id'))->default(1);
+        $form->hidden('country_id', __('Country id'))->default(1)->default(1);
+        $form->hidden('city_id', __('City id'))->default(1);
+        $form->hidden('slug', __('Slug'));
+        $form->hidden('status', __('Status'))->default(1);
         $form->textarea('description', __('Description'));
-        $form->text('quantity', __('Quantity'));
-        $form->textarea('images', __('Images'));
-        $form->textarea('thumbnail', __('Thumbnail'));
-        $form->textarea('attributes', __('Attributes'));
-        $form->number('sub_category_id', __('Sub category id'));
-        $form->text('fixed_price', __('Fixed price'))->default('Negotiable');
-        $form->text('nature_of_offer', __('Nature of offer'))->default('For sale');
-        $form->number('hospital_id', __('Hospital id'));
-        $form->number('doctor_id', __('Doctor id'));
-        $form->number('location_id', __('Location id'));
-        $form->text('latitude', __('Latitude'));
-        $form->text('longitude', __('Longitude'));
+        $form->hidden('quantity', __('Quantity'))->default(1);
+        $form->hidden('images', __('Images'))->default("[]");
+        $form->image('thumbnail', __('Thumbnail'));
+        $form->hidden('attributes', __('Attributes'))->default("[]");
+        $form->hidden('sub_category_id', __('Sub category id'))->default("1");
+        $form->hidden('fixed_price', __('Fixed price'))->default('Negotiable');
+        $form->hidden('nature_of_offer', __('Nature of offer'))->default('For sale');
+
+        $form->hidden('location_id', __('Location id'))->default("1");
+        $form->hidden('latitude', __('Latitude'))->default("0.00");
+        $form->hidden('longitude', __('Longitude'))->default("0.00");
 
         return $form;
     }

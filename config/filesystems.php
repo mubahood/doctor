@@ -55,6 +55,12 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'admin' => [
+            'driver' => 'local',
+            'root' => $_SERVER['DOCUMENT_ROOT'].'/storage',
+            'url' => env('APP_URL') . '',
+            'visibility' => 'public',
+        ],
 
     ],
 
@@ -72,5 +78,6 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
+    
 
 ];

@@ -14,4 +14,18 @@ class Hospital extends Model
         return $this->belongsTo(Location::class);
     }
 
+
+    public static function get_items()
+    {
+        $items = Hospital::where([])
+            ->orderBy('name', 'Asc')
+            ->get();
+        $_items = [];
+        foreach ($items as $key => $value) {
+            $_items[$value->id] = $value->name;
+        }
+        return $_items;
+    }
+
+
 } 
