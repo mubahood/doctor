@@ -1,0 +1,9 @@
+/.env
+/.env.example
+./config/admin.php
+./config/
+./config/*
+./config
+.env
+.htaccess
+/.htaccess
