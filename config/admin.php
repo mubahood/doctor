@@ -11,7 +11,7 @@ return [
     | login page.
     |
     */
-    'name' => 'MOBIP Uganda',
+    'name' => 'HELL Doctor',
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>MOBIP</b>',
+    'logo' => '<b>HELL Doctor</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>MOBIP</b>',
+    'logo-mini' => '<b>HELL Doctor</b>',
 
     /*
     |--------------------------------------------------------------------------
