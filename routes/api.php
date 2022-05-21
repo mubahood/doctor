@@ -5,9 +5,11 @@ use App\Http\Controllers\ApiChatsController;
 use App\Http\Controllers\ApiProductsController;
 use App\Http\Controllers\ApiUsersController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route; //new staff
+use Illuminate\Support\Facades\Route; 
+//new staff
 
 
+//romina
 
 Route::get('hospitals', [ApiProductsController::class, 'hospitals']);
 Route::get('services', [ApiProductsController::class, 'services']);
