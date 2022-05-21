@@ -7,7 +7,5 @@ php artisan make:model Banner
 php artisan make:model Post
 php artisan make:model PostCategory
 
-php artisan admin:make UserController --model=App\\User
 
-// under windows use:
-php artisan admin:make UserController --model=App\User
+php artisan admin:make HospitalController --model=App\\Models\\Hospital
