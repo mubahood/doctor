@@ -18,7 +18,20 @@ class Administrator extends Model implements AuthenticatableContract
 {
     use Authenticatable;
     use HasPermissions;
-    use DefaultDatetimeFormat;
+    use DefaultDatetimeFormat; 
+
+    public static function get_items()
+    {
+        $items = Administrator::where([])
+            ->orderBy('name', 'Asc')
+            ->get();
+        $_items = [];
+        foreach ($items as $key => $value) {
+            $_items[$value->id] = $value->name;
+        }
+        return $_items;
+    }
+
 
     protected $fillable = ['username', 'password', 'name', 'avatar'];
 

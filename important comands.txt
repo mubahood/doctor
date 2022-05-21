@@ -1,0 +1,11 @@
+git rm /config/app.php --cached
+php artisan make:migration create_banners_table
+php artisan make:migration create_posts_table
+php artisan make:migration create_post_comments_table
+php artisan make:migration create_post_categories_table
+php artisan make:model Banner
+php artisan make:model Post
+php artisan make:model PostCategory
+
+
+php artisan admin:make AppointmentController --model=App\\Models\\Appointment
