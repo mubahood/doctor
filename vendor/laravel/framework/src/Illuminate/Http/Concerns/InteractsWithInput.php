@@ -7,7 +7,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Date;
 use SplFileInfo;
 use stdClass;
-use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\VarDumper\VarDumper;
 
 trait InteractsWithInput
@@ -61,7 +60,7 @@ trait InteractsWithInput
         if ($position !== false) {
             $header = substr($header, $position + 7);
 
-            return str_contains($header, ',') ? strstr($header, ',', true) : $header;
+            return strpos($header, ',') !== false ? strstr($header, ',', true) : $header;
         }
     }
 
@@ -282,30 +281,6 @@ trait InteractsWithInput
         return data_get(
             $this->getInputSource()->all() + $this->query->all(), $key, $default
         );
-    }
-
-    /**
-     * Retrieve input from the request as a Stringable instance.
-     *
-     * @param  string  $key
-     * @param  mixed  $default
-     * @return \Illuminate\Support\Stringable
-     */
-    public function str($key, $default = null)
-    {
-        return $this->string($key, $default);
-    }
-
-    /**
-     * Retrieve input from the request as a Stringable instance.
-     *
-     * @param  string  $key
-     * @param  mixed  $default
-     * @return \Illuminate\Support\Stringable
-     */
-    public function string($key, $default = null)
-    {
-        return str($this->input($key, $default));
     }
 
     /**
@@ -530,10 +505,6 @@ trait InteractsWithInput
     {
         if (is_null($key)) {
             return $this->$source->all();
-        }
-
-        if ($this->$source instanceof InputBag) {
-            return $this->$source->all()[$key] ?? $default;
         }
 
         return $this->$source->get($key, $default);
