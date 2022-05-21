@@ -2,6 +2,7 @@
 
 namespace Encore\Admin\Controllers;
 
+use App\Models\Appointment;
 use Encore\Admin\Admin;
 use Illuminate\Support\Arr;
 
@@ -20,23 +21,29 @@ class Dashboard
      */
     public static function environment()
     {
+        $apps = Appointment::all();
+        $pending = 0;
+        $accepted = 0;
+        $completed = 0;
+        $complete = 0;
+        foreach ($apps as $key => $value) {
+            if (strtolower($value->status) == 'accepted') {
+                $accepted++;
+            }
+            if (strtolower($value->status) == strtolower('Pending')) {
+                $pending++;
+            }
+            if (strtolower($value->status) == 'completed') {
+                $completed++;
+            }
+        }
+
         $envs = [
-            ['name' => 'PHP version',       'value' => 'PHP/'.PHP_VERSION],
-            ['name' => 'Laravel version',   'value' => app()->version()],
-            ['name' => 'CGI',               'value' => php_sapi_name()],
-            ['name' => 'Uname',             'value' => php_uname()],
-            ['name' => 'Server',            'value' => Arr::get($_SERVER, 'SERVER_SOFTWARE')],
-
-            ['name' => 'Cache driver',      'value' => config('cache.default')],
-            ['name' => 'Session driver',    'value' => config('session.driver')],
-            ['name' => 'Queue driver',      'value' => config('queue.default')],
-
-            ['name' => 'Timezone',          'value' => config('app.timezone')],
-            ['name' => 'Locale',            'value' => config('app.locale')],
-            ['name' => 'Env',               'value' => config('app.env')],
-            ['name' => 'URL',               'value' => config('app.url')],
+            ['name' => 'All appointments',   'value' => count($apps)],
+            ['name' => 'Pending appointments',   'value' => $pending],
+            ['name' => 'Accepted appointments',   'value' => $accepted],
+            ['name' => 'Completed appointments',   'value' => $completed],
         ];
-
         return view('admin::dashboard.environment', compact('envs'));
     }
 

@@ -125,7 +125,7 @@ class ApiAppointementsController extends Controller
         $ap->category_id = '1';
         $ap->status = 'Pending';
         $ap->appointment_time = '';
-        $ap->details = $r->details;
+        $ap->details = $p->name;
         $ap->order_location = '1';
 
         if ($ap->save()) {

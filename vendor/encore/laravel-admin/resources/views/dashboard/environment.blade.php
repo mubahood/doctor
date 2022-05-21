@@ -1,6 +1,6 @@
 <div class="box box-default">
     <div class="box-header with-border">
-        <h3 class="box-title">Environment</h3>
+        <h3 class="box-title">Statistics</h3>
 
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -16,7 +16,7 @@
 
                 @foreach($envs as $env)
                 <tr>
-                    <td width="120px">{{ $env['name'] }}</td>
+                    <td width="190px">{{ $env['name'] }}</td>
                     <td>{{ $env['value'] }}</td>
                 </tr>
                 @endforeach
