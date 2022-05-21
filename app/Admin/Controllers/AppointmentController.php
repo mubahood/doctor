@@ -39,6 +39,7 @@ class AppointmentController extends AdminController
         $grid->column('doctor_id', __('Doctor'))->display(function ($t) {
             return $this->doctor->name;
         });
+        //new changes
         $grid->column('client_name', __('Client Name'));
         $grid->column('client_phone', __('Client Phone'));
         $grid->column('client_address', __('Client Address'));
