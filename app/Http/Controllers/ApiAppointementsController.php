@@ -17,23 +17,8 @@ class ApiAppointementsController extends Controller
         if($user_id<1){
             return [];
         }
-
-        $u = User::find($user_id);
-        if ($u == null) {
-            return [];
-        }
-
-        $items = [];
-
-        if ($u->user_ty == 'admin') {
-            $items  = Appointment::all();
-        } else if ($u->user_ty == 'doctor') {
-            $items  = Appointment::where('doctor_id', $user_id)->get();
-        } else {
-            $items  = Appointment::where('client_id', $user_id)->get();
-        }
-
-
+ 
+        $items  = Appointment::where('client_id', $user_id)->get();
         return $items;
     }
 
