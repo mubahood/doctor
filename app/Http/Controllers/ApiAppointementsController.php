@@ -118,7 +118,10 @@ class ApiAppointementsController extends Controller
         $ap = new Appointment();
         $ap->hospital_id = $p->hospital_id;
         $ap->doctor_id = $p->doctor_id;
-        $ap->client_id = 1;
+        $ap->client_id = ((int)($r->client_id));
+        $ap->client_phone = $r->phone;
+        $ap->client_address = $r->address;
+        $ap->client_name = $r->name;
         $ap->price = $p->price;
         $ap->latitude = '0.00';
         $ap->longitude = '0.00';
