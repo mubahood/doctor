@@ -92,11 +92,9 @@ class ApiAppointementsController extends Controller
 
         if (
             (!isset($r->product_id)) ||
-            (!isset($r->client_id)) ||
-            (!isset($r->latitude)) ||
-            (!isset($r->longitude)) ||
-            (!isset($r->details)) ||
-            (!isset($r->category_id))
+            (!isset($r->name)) ||
+            (!isset($r->address)) ||
+            (!isset($r->phone)) 
         ) {
             return Utils::response([
                 'status' => '0',
@@ -105,16 +103,9 @@ class ApiAppointementsController extends Controller
         }
 
 
-        $user_id = ((int)($r->client_id));
+        $user_id = 1;
         $product_id = ((int)($r->product_id));
-        $u = User::find($user_id);
-        if ($u == null) {
-            return Utils::response([
-                'status' => '0',
-                'message' => 'User not found.',
-            ]);
-        }
-
+          
         $p = Product::find($product_id);
         if ($p == null) {
             return Utils::response([
@@ -127,16 +118,15 @@ class ApiAppointementsController extends Controller
         $ap = new Appointment();
         $ap->hospital_id = $p->hospital_id;
         $ap->doctor_id = $p->doctor_id;
-        $ap->client_id = $r->client_id;
+        $ap->client_id = 1;
         $ap->price = $p->price;
-        $ap->latitude = $r->latitude;
-        $ap->longitude = $r->longitude;
-        $ap->category_id = $r->category_id;
+        $ap->latitude = '0.00';
+        $ap->longitude = '0.00';
+        $ap->category_id = '1';
         $ap->status = 'Pending';
         $ap->appointment_time = '';
         $ap->details = $r->details;
-        $ap->order_location = $u->sub_county;
-
+        $ap->order_location = '1';
 
         if ($ap->save()) {
             return Utils::response([
