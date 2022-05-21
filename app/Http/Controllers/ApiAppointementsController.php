@@ -122,10 +122,10 @@ class ApiAppointementsController extends Controller
         $ap->client_phone = $r->phone;
         $ap->client_address = $r->address;
         $ap->client_name = $r->name;
+        $ap->category_id = $r->category_id;
         $ap->price = $p->price;
         $ap->latitude = '0.00';
-        $ap->longitude = '0.00';
-        $ap->category_id = '1';
+        $ap->longitude = '0.00'; 
         $ap->status = 'Pending';
         $ap->appointment_time = '';
         $ap->details = $p->name;
