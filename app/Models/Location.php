@@ -9,6 +9,8 @@ class Location extends Model
 {
     use HasFactory;
 
+    
+
 
     public function kids()
     {
@@ -27,14 +29,7 @@ class Location extends Model
             ->get();
         $_items = [];
         foreach ($locations as $key => $value) {
-            $parent = (int) $value->parent;
-            if ($parent > 0) {
-                $name = "";
-                if ($value->mother != null) {
-                    $name = $value->mother->name . " - ";
-                }
-                $_items[$value->id] = $name . $value->name;
-            }
+            $_items[$value->id] = $value->name;
         }
         return $_items;
     }
@@ -52,4 +47,6 @@ class Location extends Model
             }
         });
     }
+
+    
 }
