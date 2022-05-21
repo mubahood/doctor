@@ -29,7 +29,9 @@ class HospitalController extends AdminController
 
 
         $grid->column('name', __('Name'));
-        $grid->column('location_id', __('Location id'));
+        $grid->column('location_id', __('Location'))->display(function ($m){
+            return $this->location->name;
+        });
 
         return $grid;
     }
@@ -49,8 +51,6 @@ class HospitalController extends AdminController
         $show->field('location_id', __('Location id'));
         $show->field('photo', __('Photo'));
         $show->field('details', __('Details'));
-        $show->field('latitude', __('Latitude'));
-        $show->field('longitude', __('Longitude'));
 
         return $show;
     }

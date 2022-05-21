@@ -8,4 +8,4 @@ php artisan make:model Post
 php artisan make:model PostCategory
 
 
-php artisan admin:make HospitalController --model=App\\Models\\Hospital
+php artisan admin:make ProductController --model=App\\Models\\Product

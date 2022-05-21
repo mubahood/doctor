@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Hospital extends Model
 {
     use HasFactory;
-}
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+} 
