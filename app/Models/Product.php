@@ -16,36 +16,42 @@ use function PHPUnit\Framework\fileExists;
 class Product extends Model
 {
     use HasFactory;
-    
+
     public function doctor()
     {
-        return $this->belongsTo(Administrator::class,'doctor_id');
+        return $this->belongsTo(Administrator::class, 'doctor_id');
     }
-    
+
     public function hospital()
     {
+        $g = Hospital::find($this->hospital_id);
+        if ($g == null) {
+            $this->hospital_id = 1;
+            $this->save();
+        }
         return $this->belongsTo(Hospital::class);
     }
 
-    public static function get_nearest_products($loc){
-         
-        $p2 = $loc['lati']*$loc['long'];
-        if($p2<0){
-            $p2 = (-1)*($p2);
+    public static function get_nearest_products($loc)
+    {
+
+        $p2 = $loc['lati'] * $loc['long'];
+        if ($p2 < 0) {
+            $p2 = (-1) * ($p2);
         }
 
-        $pros = Product::where('sub_category_id',$loc['cat_id'])->get();
+        $pros = Product::where('sub_category_id', $loc['cat_id'])->get();
         $distances = [];
         foreach ($pros as $key => $val) {
-            $p1 = ((double)($val->latitude)) * ((double)($val->longitude));
-            if($p1<0){
-                $p1 = (-1)*($p1);
+            $p1 = ((float)($val->latitude)) * ((float)($val->longitude));
+            if ($p1 < 0) {
+                $p1 = (-1) * ($p1);
             }
             $p = $p1 - $p2;
-            if($p < 0){
-                $p = (-1)*($p);
+            if ($p < 0) {
+                $p = (-1) * ($p);
             }
-            $distances[$val->id.""] = $p;
+            $distances[$val->id . ""] = $p;
         }
 
         asort($distances);
@@ -53,7 +59,7 @@ class Product extends Model
         $_hospitals = [];
         foreach ($distances as $key => $dis) {
             $hos = Product::find($key);
-            if($hos == null){
+            if ($hos == null) {
                 continue;
             }
             $hos->distance = $dis;
@@ -73,7 +79,7 @@ class Product extends Model
     public function getQuantityAttribute($value)
     {
         return (int)($value);
-    } 
+    }
 
 
     public function getPriceAttribute($value)
@@ -81,34 +87,35 @@ class Product extends Model
         return number_format((int)($value));
     }
 
-   
-    public static function on_update ($p) {
+
+    public static function on_update($p)
+    {
         $cat = Category::find($p->sub_category_id);
         $u = User::find($p->user_id);
         $hos = Hospital::find($p->hospital_id);
 
-        if($p->name == null || (strlen($p->name)<2) ){
-            if($cat!=null && $u!=null){
-                $p->name = $cat->name." By ".$u->name;
+        if ($p->name == null || (strlen($p->name) < 2)) {
+            if ($cat != null && $u != null) {
+                $p->name = $cat->name . " By " . $u->name;
             }
         }
 
         $p->category_id = $p->sub_category_id;
-        if($cat!=null){
-            if( ((int)($cat->parent)) > 0  ){
-                $p->category_id = $cat->parent;    
+        if ($cat != null) {
+            if (((int)($cat->parent)) > 0) {
+                $p->category_id = $cat->parent;
             }
         }
-        
-        if($hos!=null){
+
+        if ($hos != null) {
             $p->location_id = $hos->location_id;
             $p->latitude = $hos->latitude;
             $p->longitude = $hos->longitude;
         }
-        
+
         $p->slug = Utils::make_slug($p->name);
         $p->status = 1;
-        
+
         return $p;
     }
 
@@ -118,18 +125,18 @@ class Product extends Model
         parent::boot();
 
         self::creating(function ($p) {
-            $p = Product::on_update($p); 
+            $p = Product::on_update($p);
             return $p;
         });
 
         self::updating(function ($p) {
-            $p = Product::on_update($p); 
+            $p = Product::on_update($p);
             return $p;
         });
 
 
 
-     
+
         static::deleting(function ($model) {
 
             $thumbs = json_decode($model->images);
@@ -203,7 +210,7 @@ class Product extends Model
             if (strlen($this->thumbnail) > 3) {
                 $thumb = json_decode($this->thumbnail);
                 if (isset($thumb->thumbnail)) {
-                    $thumbnail = url('storage/'.$thumb->thumbnail);
+                    $thumbnail = url('storage/' . $thumb->thumbnail);
                 }
             }
         }
@@ -340,12 +347,14 @@ class Product extends Model
         $this->attributes['attributes'] =  json_encode($attributes);
     }
 
-    public function get_price(){
-        return ((int)( str_replace(',','',$this->price) ));
+    public function get_price()
+    {
+        return ((int)(str_replace(',', '', $this->price)));
     }
 
-    public function get_quantity(){
-        return ((int)( str_replace(',','',$this->quantity) ));
+    public function get_quantity()
+    {
+        return ((int)(str_replace(',', '', $this->quantity)));
     }
 
     protected $fillable = [
