@@ -42,6 +42,9 @@ class ProductController extends AdminController
         $grid->column('id', __('Id'))->sortable();
         $grid->column('name', __('Name'));
         $grid->column('hospital_id', __('Hospital'))->display(function ($m){
+            if($this->hospital == null){
+                return '';
+            }
             return $this->hospital->name;
         });
         $grid->column('doctor_id', __('Doctor'))->display(function ($m){
